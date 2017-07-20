@@ -13,6 +13,39 @@ import * as actions from '../actions'
 
 const win = Dimensions.get('window');
 
+const CONTENT =[
+  {
+   "poster": require('../../img/shakti/1.png'),
+  },
+  {
+    "poster": require('../../img/shakti/2.png'),
+  },
+  {
+    "poster": require('../../img/shakti/3.png'),
+  },
+  {
+    "poster": require('../../img/shakti/4.png'),
+  },
+  {
+    "poster": require('../../img/shakti/5.png'),
+   },
+  {
+    "poster": require('../../img/shakti/6.png'),
+  },
+  {
+    "poster": require('../../img/shakti/7.png'),
+  },
+  {
+    "poster": require('../../img/shakti/8.png'),
+  },
+  {
+    "poster": require('../../img/shakti/9.png'),
+  },
+  {
+    "poster": require('../../img/shakti/10.png'),
+  }
+]
+
 class ListItem extends Component {
   componentWillUpdate() {
     LayoutAnimation.easeInEaseOut()
@@ -35,7 +68,7 @@ class ListItem extends Component {
 
   render() {
     const { event, titleStyle } = styles
-    const { id, title } = this.props.library
+    const { id, title, poster } = this.props.library
 
     return (
       <TouchableWithoutFeedback
@@ -43,7 +76,7 @@ class ListItem extends Component {
       >
         <View>
           <CardSection>
-            <Image style={event} source={require('../../img/gameSquare.png')}>
+           <Image style={event} source={require(poster)} >
             <Text style={titleStyle}>
               {title}
             </Text>
