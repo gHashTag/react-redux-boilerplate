@@ -3,24 +3,29 @@ import {
   Text,
   TouchableWithoutFeedback,
   View,
+  Image,
   LayoutAnimation,
+  Dimensions
 } from 'react-native'
 import { connect } from 'react-redux'
 import { CardSection } from './common'
 import * as actions from '../actions'
 
+const win = Dimensions.get('window');
+
 class ListItem extends Component {
   componentWillUpdate() {
-    LayoutAnimation.spring()
+    LayoutAnimation.easeInEaseOut()
   }
 
   renderDescription() {
     const { library, expanded } = this.props
+    const { textDescription } = styles
 
     if (expanded) {
       return (
         <CardSection>
-          <Text>
+          <Text style={textDescription}>
             {library.description}
           </Text>
         </CardSection>
@@ -29,7 +34,7 @@ class ListItem extends Component {
   }
 
   render() {
-    const { titleStyle } = styles
+    const { event, titleStyle } = styles
     const { id, title } = this.props.library
 
     return (
@@ -38,9 +43,11 @@ class ListItem extends Component {
       >
         <View>
           <CardSection>
+            <Image style={event} source={require('../../img/gameSquare.png')}>
             <Text style={titleStyle}>
               {title}
             </Text>
+           </Image>
           </CardSection>
           {this.renderDescription()}
         </View>
@@ -51,8 +58,22 @@ class ListItem extends Component {
 
 const styles = {
   titleStyle: {
-    fontSize: 18,
+    fontFamily: 'AvenirNextCondensed-UltraLight',
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: '#fff',
+    fontSize: 16,
+    marginLeft: 20,
+    paddingTop: win.width-40,
     paddingLeft: 15,
+  },
+  textDescription: {
+   flex: 1,
+   padding: 15 
+  },
+  event: {
+    alignSelf: 'stretch',
+    width: win.width,
+    height: win.width 
   },
 }
 
